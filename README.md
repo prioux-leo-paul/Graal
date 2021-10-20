@@ -8,10 +8,10 @@ Cette application est un jeu d'alcool qui tire un categorie aléatoire et ensuit
 
 ### Contenue
 
-Elle contient 3 mode et trois langue différente.
+Elle contient 3 mode de jeux et trois langue différente.
 
 Elle à 4 pages différentes: 
-- "Entrer des noms"
-- "Choix des modes"
-- "Une roue aléatoire"
-- "Affiche de la règle chosit"
+- Entrer des noms
+- Choix des modes
+- Une roue aléatoire
+- Affiche de la règle chosit
