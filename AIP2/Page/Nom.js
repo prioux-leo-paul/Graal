@@ -5,6 +5,7 @@ import { Dimensions } from 'react-native';
 import { StyleSheet, Text, View, Image,  TextInput, TouchableHighlight, FlatList, TouchableOpacity } from 'react-native';
 import * as IMAGE from '../Ressources/Variable/base64.js';
 import * as Var from '../Ressources/Variable/Var.js';
+import { useFonts } from 'expo-font';
 
 
 
@@ -13,8 +14,12 @@ const tabPlacehoder = ['ajouter un joueur', 'add player', 'Agregar un jugador'];
 
 let id = 0;
 let erreurNow;
-function NomEnter() {
-  
+
+export default function NomEnter() {
+
+    let [fontsLoaded] = useFonts({
+      'Staatliches-Regular': require('../assets/fonts/Staatliches-Regular.ttf'),
+    });
   const [tabJoueur2, setTabJoueur] = useState(tabJoueur);
   const [name, setName] = useState('');
   const [genre, setGenre] = useState(1);
@@ -102,7 +107,7 @@ function NomEnter() {
             </TouchableHighlight>
           </View>
           <View style={{height:"100%",width:"60%",alignItems:"center",justifyContent:"center"}}>
-            <Text style={{color:"white", fontSize: taille_text, fontWeight: 'bold' }}>{item.name}</Text>
+            <Text style={{color:"white", fontSize: taille_text, fontWeight: 'normal', fontFamily: 'Staatliches-Regular' }}>{item.name}</Text>
           </View>
           <View style={{width : "20%",height:"100%",justifyContent:"center",alignItems:"flex-end"}}>
             <TouchableHighlight onPress={() => { rmJoueur(item); }}>
@@ -124,6 +129,10 @@ function NomEnter() {
 
   var taille_font = Var.get_adaptive_size(10, 30);
   var taille_selection = Var.get_adaptive_size(25, 75);
+
+  if (!fontsLoaded) {
+    return <Text>oupss</Text>;
+  } else {
 
   return (
     <View style={styles.fond}>
@@ -152,7 +161,7 @@ function NomEnter() {
               <TouchableHighlight onPress={() => { setGenre(genre * -1);}}>
                 <Image style={{ height: taille_selection, width: taille_selection, resizeMode : "contain" }} source={donneImage(genre)} />
               </TouchableHighlight>
-              <TextInput style={{ textAlign: 'center',fontSize: taille_font, borderBottomColor: "black", borderWidth: 2, borderRadius: 10, height: taille_font*2.5 , width: "55%", backgroundColor: "white" }} onChangeText={(input) => { setName(input) }} value={name} placeholder={Placehoder} />
+              <TextInput style={{ textAlign: 'center',fontFamily: 'Staatliches-Regular',fontSize: taille_font, borderBottomColor: "black", borderWidth: 2, borderRadius: 10, height: taille_font*2.5 , width: "55%", backgroundColor: "white" }} onChangeText={(input) => { setName(input) }} value={name} placeholder={Placehoder} />
               <TouchableHighlight onPress={() => {
             if (name.length > 1 && name.length <= 15) {
               if(!joueurExist(name)){
@@ -186,8 +195,8 @@ function NomEnter() {
                 <Image style={{ height: taille_selection, width: taille_selection, resizeMode : "contain" }} source={IMAGE.add} />
               </TouchableHighlight>
             </LinearGradient>
-            <View style={{height : "45%",width:"100%"}}>
-              <Text style={{fontSize: taille_font}}>{userErreur}</Text>
+            <View style={{height : "45%",width:"100%",alignItems:"center",justifyContent:"center"}}>
+              <Text style={{fontSize: taille_font,color : '#000000',opacity: 0.6, fontFamily: 'Staatliches-Regular'}}>{userErreur}</Text>
             </View>
           </View>
           <View style={styles.boxSousTitre}>
@@ -224,9 +233,9 @@ function NomEnter() {
     </View>
 
   );
+  }
 }
 
-export default NomEnter;
 
 var deviceWidth = Dimensions.get('window').width;
 const styles = StyleSheet.create({
@@ -266,7 +275,9 @@ const styles = StyleSheet.create({
     fontStyle : 'normal',
     fontWeight : 'normal',
     fontSize: deviceWidth * 0.096,
-    color:"white"
+    color:"white",
+    letterSpacing : 0.18,
+    fontFamily: 'Staatliches-Regular'
   },
   boxRepartie :{
     width: "100%",
@@ -330,7 +341,11 @@ const styles = StyleSheet.create({
   sousTitre : {
     fontStyle : 'normal',
     fontWeight : 'normal',
-    fontSize : deviceWidth*0.04
+    fontSize : deviceWidth*0.04,
+    color : '#000000',
+    opacity: 0.6,
+    letterSpacing : 0.18,
+    fontFamily: 'Staatliches-Regular'
   },
   spaceSousTitre :{
   width : "5%",
@@ -345,7 +360,9 @@ const styles = StyleSheet.create({
     color : "white",
     fontStyle : 'normal',
     fontWeight : 'normal',
-      fontSize :deviceWidth * 0.05333
+    fontSize :deviceWidth * 0.05333,
+    letterSpacing : 0.18,
+    fontFamily: 'Staatliches-Regular'
   },
   boxSelection : {
     height :"60%",

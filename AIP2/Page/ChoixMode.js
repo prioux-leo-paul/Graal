@@ -6,7 +6,6 @@ import * as Var from '../Ressources/Variable/Var.js';
 import { LinearGradient } from "expo-linear-gradient";
 import { StatusBar } from 'expo-status-bar';
 
-
     function getChemin(mode){
       if (Var.langue === 0){
         if(mode === 'Classique')
@@ -63,7 +62,8 @@ import { StatusBar } from 'expo-status-bar';
 
  let arrayMode =['Retour','Back','Volver'];
 
-function ChoixMode( ) {
+  export default function ChoixMode() {
+
   return (
     <View style={styles.fond}>
       <StatusBar style="auto"/>
@@ -88,6 +88,7 @@ function ChoixMode( ) {
                           <View style={styles.containersModeUnitSecond}>
                             <Text style={styles.titleModeUnit}>{Var.tabMode[0].name}</Text>
                             <View style={styles.sepModeUnit}></View>
+                            <View style={{height:"5%",width:"100%"}}></View>
                             <Text style={styles.descriptionModeUnit}  >{Var.tabMode[0].description[Var.langue]}</Text>
                           </View>
                   </LinearGradient>
@@ -103,6 +104,7 @@ function ChoixMode( ) {
                           <View style={styles.containersModeUnitSecond}>
                             <Text style={styles.titleModeUnit}>{Var.tabMode[1].name}</Text>
                             <View style={styles.sepModeUnit}></View>
+                            <View style={{height:"5%",width:"100%"}}></View>
                             <Text style={styles.descriptionModeUnit}  >{Var.tabMode[1].description[Var.langue]}</Text>
                           </View>
                   </LinearGradient>
@@ -118,6 +120,7 @@ function ChoixMode( ) {
                           <View style={styles.containersModeUnitSecond}>
                             <Text style={styles.titleModeUnit}>{Var.tabMode[2].name}</Text>
                             <View style={styles.sepModeUnit}></View>
+                            <View style={{height:"5%",width:"100%"}}></View>
                             <Text style={styles.descriptionModeUnit}  >{Var.tabMode[2].description[Var.langue]}</Text>
                           </View>
                   </LinearGradient>
@@ -141,9 +144,10 @@ function ChoixMode( ) {
     </View>
 
   );
-}
+  }
+  
 
-export default ChoixMode;
+
 
 
 var deviceWidth = Dimensions.get('window').width;
@@ -186,7 +190,9 @@ const styles = StyleSheet.create({
     fontStyle : 'normal',
     fontWeight : 'normal',
     fontSize: deviceWidth * 0.096,
-    color:"white"
+    color:"white",
+    letterSpacing : 0.18,
+    fontFamily: 'Staatliches-Regular'
   },
   boxRepartie :{
     width: "100%",
@@ -231,7 +237,11 @@ const styles = StyleSheet.create({
   sousTitre : {
     fontStyle : 'normal',
     fontWeight : 'normal',
-      fontSize :deviceWidth * 0.05333
+    fontSize :deviceWidth * 0.05333,
+    color : '#000000',
+    opacity: 0.6,
+    letterSpacing : 0.18,
+    fontFamily: 'Staatliches-Regular'
   },
   spaceSousTitre :{
   width : "5%",
@@ -292,7 +302,9 @@ const styles = StyleSheet.create({
      
     fontStyle : 'normal',
     fontWeight : 'normal',
-      fontSize :deviceWidth * 0.05333
+    fontSize :deviceWidth * 0.05333,
+    letterSpacing : 0.18,
+    fontFamily: 'Staatliches-Regular'
   },
   containersModeUnit :{
     width : "100%", 
@@ -321,7 +333,7 @@ const styles = StyleSheet.create({
   },
   containersModeUnitSecond : {
   width : "60%",
-  height:"90%",
+  height:"100%",
   display:"flex",
   flexDirection: "column",
   justifyContent :"center",
@@ -329,8 +341,10 @@ const styles = StyleSheet.create({
   },
   titleModeUnit : {
   fontSize: deviceHeight * 0.02209,
-  fontWeight: "bold" ,
-  color:"white"
+  fontWeight: "normal" ,
+  color:"white",
+  letterSpacing : 0.18,
+  fontFamily: 'Staatliches-Regular'
   },
   sepModeUnit : {
   height:"0.5%",
@@ -339,7 +353,8 @@ const styles = StyleSheet.create({
   },
   descriptionModeUnit : {
   fontSize: deviceHeight * 0.01616,
-  color:"white"
+  color:"white",
+  fontFamily: 'Staatliches-Regular'
 }
 
 });

@@ -6,7 +6,6 @@ import { Dimensions } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import * as IMAGE from '../Ressources/Variable/base64.js';
 
-
 let timer = undefined;
 
 function App() {
@@ -73,9 +72,7 @@ function App() {
           Var.setNbrTourMax(Math.floor(Math.random() * 50) + Var.state_total.length + 3);
           Var.setNbrTour(0);
           timer = setInterval(Lancer, 100);
-          Var.setLancer(1);
-       
-          
+          Var.setLancer(1);     
         }
       }}>
             <Image source={img2} style={styles.tallImage}/>
@@ -144,14 +141,18 @@ const styles = StyleSheet.create({
       
     fontStyle : 'normal',
     fontWeight : 'normal',
-      fontSize : deviceWidth * 0.05333
+    fontSize : deviceWidth * 0.05333,
+    letterSpacing : 0.18,
+    fontFamily: 'Staatliches-Regular'
   },
   title :{
       
     fontStyle : 'normal',
     fontWeight : 'normal',
     fontSize: deviceWidth * 0.096,
-    color:"white"
+    color:"white",
+    letterSpacing : 0.18,
+    fontFamily: 'Staatliches-Regular'
   },
   boxRepartie :{
     width: "100%",
@@ -220,7 +221,11 @@ const styles = StyleSheet.create({
   sousTitre : {
     fontStyle : 'normal',
     fontWeight : 'normal',
-      fontSize : deviceWidth * 0.05333
+    fontSize : deviceWidth * 0.05333,
+    color : '#000000',
+    opacity: 0.6,
+    letterSpacing : 0.18,
+    fontFamily: 'Staatliches-Regular'
   },
   spaceSousTitre :{
   width : "5%",

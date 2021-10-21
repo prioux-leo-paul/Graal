@@ -67,7 +67,7 @@ function setModeChoisit(t) {
 
 let nameRoullette = ['Roulette','wheel','Rueda de la ruleta'];
 
-let nameRegle = ['Règle','Rule','Regla']
+let nameRegle = ['Regle','Rule','Regla']
 
 let nameMode =['Mode','Mode','Modo']
 

@@ -6,8 +6,10 @@ import { StatusBar } from 'expo-status-bar';
 import * as Var from '../Ressources/Variable/Var.js';
 import * as IMAGE from '../Ressources/Variable/base64.js';
 
+
 let Regle="";
-function App() {
+export default function App() {
+
   function donneJoueur(signe) {
     Var.Melanger();
     let signeNum;
@@ -69,7 +71,6 @@ function App() {
         regle =regle.replace("$$", donneJoueur("$$"));
       }
     
-      
     return regle;
   }
   
@@ -93,7 +94,7 @@ function App() {
           <View style={styles.boxSousTitre}>
               <View style={styles.spaceSousTitre}></View>
               <View style={{height:"100%",width:"15%"}}>
-                <Image style={{height:"100%", width:"100%", resizeMode:"contain"}} source={Var.state_total[Var.indice].src}/>
+                <Image style={{height:"90%", width:"90%", resizeMode:"contain"}} source={Var.state_total[Var.indice].src}/>
               </View>
               <Text style={styles.sousTitre}>{Var.nameRegle[Var.langue].toUpperCase()}</Text>
           </View>
@@ -114,7 +115,8 @@ function App() {
   );
 }
 
-export default App;
+
+
 
 function TailleRegle(){
   let taille = Regle.length;
@@ -122,8 +124,10 @@ function TailleRegle(){
     return 3;
   else if(taille <= 200)
     return 2;
+    else if(taille <= 250)
+  return 1;
   else
-    return 1;
+    return 0.1;
 }
 var taille_regle_description = Var.get_adaptive_size(40, 90);
 var deviceWidth = Dimensions.get('window').width;
@@ -164,7 +168,9 @@ const styles = StyleSheet.create({
     fontStyle : 'normal',
     fontWeight : 'normal',
     fontSize: 36,
-    color:"white"
+    color:"white",
+    fontFamily: 'Staatliches-Regular',
+    letterSpacing : 0.18
   },
   boxRepartie :{
     width: "100%",
@@ -210,7 +216,7 @@ const styles = StyleSheet.create({
   },
   boxSousTitre :{
     width : "100%",
-    height : "5%",
+    height : "10%",
     display : "flex",
     flexDirection : "row",
     alignItems :"center",
@@ -219,7 +225,13 @@ const styles = StyleSheet.create({
   sousTitre : {
     fontStyle : 'normal',
     fontWeight : 'normal',
-      fontSize :deviceWidth * 0.05333
+    fontSize :deviceWidth * 0.05333,
+    color : '#000000',
+    opacity: 0.6,
+    letterSpacing : 0.18,
+    fontFamily: 'Staatliches-Regular'
+
+
   },
   spaceSousTitre :{
   width : "5%",
@@ -231,16 +243,17 @@ const styles = StyleSheet.create({
     resizeMode : "contain"
   },
   boxRegle : {
-    height: "85%",
-    width : "90%",
+    height: "80%",
+    width : "95%",
     justifyContent : "center",
-    alignItems :"center"
+    alignItems :"center",
   },
   textRegle : {
     overflow:"scroll",
     fontSize: taille_regle_description * TailleRegle(),
-    fontWeight: "bold",
-    color: "white" 
+    textAlign: 'center',
+    color: "white" ,
+    fontFamily: 'Staatliches-Regular'
   }
   
  
