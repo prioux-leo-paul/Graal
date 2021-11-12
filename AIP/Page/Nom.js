@@ -1,8 +1,7 @@
 import React, { Component, useState, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { LinearGradient } from "expo-linear-gradient";
-import { Dimensions } from 'react-native';
-import { StyleSheet, Text, View, Image,  TextInput, TouchableHighlight, FlatList, TouchableOpacity } from 'react-native';
+import {Dimensions, StyleSheet, Text, View, Image,  TextInput, FlatList, TouchableOpacity } from 'react-native';
 import * as IMAGE from '../Ressources/Variable/base64.js';
 import * as Var from '../Ressources/Variable/Var.js';
 import { useFonts } from 'expo-font';
@@ -102,17 +101,17 @@ export default function NomEnter() {
     return (
       <LinearGradient colors={['rgba(74, 45, 68, 0.5)','rgba(67, 67, 67, 0.5)']} style={{marginBottom:"5%",padding:"3%",width:"100%",height:taille_div*2, display:"flex",flexDirection:"row", alignItems:"center",justifyContent :"space-between", borderRadius : 20}}>
           <View style={{width : "20%",height:"100%",justifyContent:"center",alignItems:"flex-start"}}>
-            <TouchableHighlight onPress={() => { changeType(item); }}>
+            <TouchableOpacity onPress={() => { changeType(item); }}>
               <Image style={{ height: taille_selection, width: taille_selection,resizeMode:"contain" }} source={donneImage(item.genre)} />
-            </TouchableHighlight>
+            </TouchableOpacity>
           </View>
           <View style={{height:"100%",width:"60%",alignItems:"center",justifyContent:"center"}}>
             <Text style={{color:"white", fontSize: taille_text, fontWeight: 'normal', fontFamily: 'Staatliches-Regular' }}>{item.name}</Text>
           </View>
           <View style={{width : "20%",height:"100%",justifyContent:"center",alignItems:"flex-end"}}>
-            <TouchableHighlight onPress={() => { rmJoueur(item); }}>
+            <TouchableOpacity onPress={() => { rmJoueur(item); }}>
               <Image source={IMAGE.remove} style={{height:taille_image*2,width:taille_image*2,resizeMode :"contain"}}/>
-            </TouchableHighlight>
+            </TouchableOpacity>
           </View>
       </LinearGradient >
 
@@ -120,6 +119,9 @@ export default function NomEnter() {
 
     )
   }
+
+  
+    
 
   const [userErreur, setUserErreur]= useState('');
   let userRequis =[["Le nom doit être entre 2 et 15 charactères","The name must be between 2 and 15 characters","El nombre debe tener entre 2 y 15 caracteres"],
@@ -134,18 +136,20 @@ export default function NomEnter() {
     return <Text>oupss</Text>;
   } else {
 
+   
+
   return (
     <View style={styles.fond}>
       <StatusBar style="auto"/>
       <Image source={IMAGE.fondGoutte} style={styles.imageGoutte}/>
       <Image source={IMAGE.fondGraal} style={styles.imageGraal}/>
       <View style={styles.boxTitre}>
-        <View style={{width:"15%",height:"100%"}}></View>
+        <View style={{width:"15%"}}></View>
         <View style={{width:"70%",alignItems:"center"}}>
           <Text style={styles.title}>GRAAL</Text>
         </View>
         <View style={{width:"15%",height:"100%", alignItems:"center",justifyContent:"center"}}>
-          <TouchableOpacity onPress={() => { incrementeLangue(); changeTextLanguage(); }}>
+        <TouchableOpacity onPress={() => { incrementeLangue(); changeTextLanguage(); }}>
             <Image style={{ height: taille_selection,width:taille_selection, resizeMode: "contain"}} source={donneImageDrapeau()} />
           </TouchableOpacity>
         </View>
@@ -158,11 +162,11 @@ export default function NomEnter() {
           <View style={styles.containerSelection}>
           <View style={{height : "5%",width:"100%"}}></View>
             <LinearGradient colors={['rgba(74, 45, 68, 0.8)','rgba(67, 67, 67, 0.8)']} style={styles.boxSelection}>
-              <TouchableHighlight onPress={() => { setGenre(genre * -1);}}>
+              <TouchableOpacity onPress={() => { setGenre(genre * -1);}}>
                 <Image style={{ height: taille_selection, width: taille_selection, resizeMode : "contain" }} source={donneImage(genre)} />
-              </TouchableHighlight>
+              </TouchableOpacity>
               <TextInput style={{ textAlign: 'center',fontFamily: 'Staatliches-Regular',fontSize: taille_font, borderBottomColor: "black", borderWidth: 2, borderRadius: 10, height: taille_font*2.5 , width: "55%", backgroundColor: "white" }} onChangeText={(input) => { setName(input) }} value={name} placeholder={Placehoder} />
-              <TouchableHighlight onPress={() => {
+              <TouchableOpacity onPress={() => {
             if (name.length > 1 && name.length <= 15) {
               if(!joueurExist(name)){
                 if(!name.includes(' ')){
@@ -193,7 +197,7 @@ export default function NomEnter() {
             
           }}>
                 <Image style={{ height: taille_selection, width: taille_selection, resizeMode : "contain" }} source={IMAGE.add} />
-              </TouchableHighlight>
+              </TouchableOpacity>
             </LinearGradient>
             <View style={{height : "45%",width:"100%",alignItems:"center",justifyContent:"center"}}>
               <Text style={{fontSize: taille_font,color : '#000000',opacity: 0.6, fontFamily: 'Staatliches-Regular'}}>{userErreur}</Text>
@@ -276,7 +280,7 @@ const styles = StyleSheet.create({
     fontWeight : 'normal',
     fontSize: deviceWidth * 0.096,
     color:"white",
-    letterSpacing : 0.18,
+    letterSpacing : deviceWidth * 0.015,
     fontFamily: 'Staatliches-Regular'
   },
   boxRepartie :{
@@ -344,7 +348,7 @@ const styles = StyleSheet.create({
     fontSize : deviceWidth*0.04,
     color : '#000000',
     opacity: 0.6,
-    letterSpacing : 0.18,
+    letterSpacing : deviceWidth * 0.004,
     fontFamily: 'Staatliches-Regular'
   },
   spaceSousTitre :{
@@ -361,7 +365,7 @@ const styles = StyleSheet.create({
     fontStyle : 'normal',
     fontWeight : 'normal',
     fontSize :deviceWidth * 0.05333,
-    letterSpacing : 0.18,
+    letterSpacing : deviceWidth * 0.00768,
     fontFamily: 'Staatliches-Regular'
   },
   boxSelection : {

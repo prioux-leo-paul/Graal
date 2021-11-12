@@ -120,4 +120,5 @@ function supprimerDeListe(joueur){
 function Melanger(){
     listetmp.sort((a, b) => 0.5 - Math.random());
 }
-export {nameMode,nameRegle,nameRoullette,listetmp,MajListeTmp,supprimerDeListe,Melanger,ModeChoisit,setModeChoisit,tabMode, set_Taille_ecran_longueur, set_Taille_ecran_largeur, get_adaptive_size, langue, setLangue, nbrTour, setNbrTour, nbrTourMax, setNbrTourMax, lancer, setLancer, setNavigation, navigation, state, setState, state_total, setStateTotal, indice, setIndice, listeJoueur, setJoueurCourant, setListeJoueur, joueurCourant };
+let tabPartage = ['Envenime tes soirée avec GRAAL \n','Liven up your evening with GRAAL \n','Anima tu noche con GRAAL \n']
+export {tabPartage,nameMode,nameRegle,nameRoullette,listetmp,MajListeTmp,supprimerDeListe,Melanger,ModeChoisit,setModeChoisit,tabMode, set_Taille_ecran_longueur, set_Taille_ecran_largeur, get_adaptive_size, langue, setLangue, nbrTour, setNbrTour, nbrTourMax, setNbrTourMax, lancer, setLancer, setNavigation, navigation, state, setState, state_total, setStateTotal, indice, setIndice, listeJoueur, setJoueurCourant, setListeJoueur, joueurCourant };

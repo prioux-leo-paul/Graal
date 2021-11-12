@@ -1,6 +1,5 @@
 import React from 'react';
-import { StyleSheet,Text, View, Image, TouchableOpacity} from 'react-native';
-import { Dimensions } from 'react-native';
+import {Dimensions,Share, StyleSheet,Text, View, Image, TouchableOpacity} from 'react-native';
 import * as IMAGE from '../Ressources/Variable/base64.js';
 import * as Var from '../Ressources/Variable/Var.js';
 import { LinearGradient } from "expo-linear-gradient";
@@ -64,13 +63,44 @@ import { StatusBar } from 'expo-status-bar';
 
   export default function ChoixMode() {
 
+    onShare = async () => {
+      try {
+        const result = await Share.share({
+          message:
+            Var.tabPartage[Var.langue] + 'https://apps.apple.com/fr/app/Graal',
+        });
+  
+        if (result.action === Share.sharedAction) {
+          if (result.activityType) {
+            // shared with activity type of result.activityType
+          } else {
+            // shared
+          }
+        } else if (result.action === Share.dismissedAction) {
+          // dismissed
+        }
+      } catch (error) {
+        alert(error.message);
+      }
+    };
+
+    var taille_selection = Var.get_adaptive_size(25, 75);
+
   return (
     <View style={styles.fond}>
       <StatusBar style="auto"/>
       <Image source={IMAGE.fondGoutte} style={styles.imageGoutte}/>
       <Image source={IMAGE.fondGraal} style={styles.imageGraal}/>
-      <View style={styles.boxRepartie}>
-        <Text style={styles.title}>GRAAL</Text>
+      <View style={styles.boxTitre}>
+        <View style={{width:"15%"}}></View>
+        <View style={{width:"70%",alignItems:"center"}}>
+          <Text style={styles.title}>GRAAL</Text>
+        </View>
+        <View style={{width:"15%",height:"100%", alignItems:"center",justifyContent:"center"}}>
+        <TouchableOpacity onPress={onShare}>
+            <Image style={{ height: taille_selection,width:taille_selection, resizeMode: "contain",opacity : 0.6}} source={IMAGE.share} />
+          </TouchableOpacity>
+        </View>
       </View>
       <View style={styles.backgroundBox} >
           <View style={styles.boxSousTitre}>
@@ -175,6 +205,15 @@ const styles = StyleSheet.create({
     zIndex : -1,
     
   },
+  boxTitre :{
+    width: "100%",
+    height: "15%",
+    display:"flex",
+    flexDirection :"row",
+    justifyContent :"center",
+    alignItems:"center",
+    
+  },
   imageGraal : {
     width: "136.5333333333333%",
     height: "63.05418719211823%",
@@ -191,7 +230,7 @@ const styles = StyleSheet.create({
     fontWeight : 'normal',
     fontSize: deviceWidth * 0.096,
     color:"white",
-    letterSpacing : 0.18,
+    letterSpacing : deviceWidth * 0.015,
     fontFamily: 'Staatliches-Regular'
   },
   boxRepartie :{
@@ -228,7 +267,7 @@ const styles = StyleSheet.create({
   },
   boxSousTitre :{
     width : "100%",
-    height : "5%",
+    height : "7%",
     display : "flex",
     flexDirection : "row",
     alignItems :"center",
@@ -240,7 +279,7 @@ const styles = StyleSheet.create({
     fontSize :deviceWidth * 0.05333,
     color : '#000000',
     opacity: 0.6,
-    letterSpacing : 0.18,
+    letterSpacing : deviceWidth * 0.004,
     fontFamily: 'Staatliches-Regular'
   },
   spaceSousTitre :{
@@ -254,12 +293,12 @@ const styles = StyleSheet.create({
   },
   boxRegle : {
     marginTop: "5%",
-    height: "85%",
+    height: "83%",
     width : "90%",
     display: "flex",
     flexDirection :"column",
     justifyContent : "space-evenly",
-    alignItems :"center"
+    alignItems :"center",
   },
  
   buttonTouch : {
@@ -303,7 +342,7 @@ const styles = StyleSheet.create({
     fontStyle : 'normal',
     fontWeight : 'normal',
     fontSize :deviceWidth * 0.05333,
-    letterSpacing : 0.18,
+    letterSpacing : deviceWidth * 0.00768,
     fontFamily: 'Staatliches-Regular'
   },
   containersModeUnit :{
@@ -343,7 +382,7 @@ const styles = StyleSheet.create({
   fontSize: deviceHeight * 0.02209,
   fontWeight: "normal" ,
   color:"white",
-  letterSpacing : 0.18,
+  letterSpacing : deviceWidth * 0.00768,
   fontFamily: 'Staatliches-Regular'
   },
   sepModeUnit : {
@@ -352,7 +391,7 @@ const styles = StyleSheet.create({
   backgroundColor : "white"
   },
   descriptionModeUnit : {
-  fontSize: deviceHeight * 0.01616,
+  fontSize: deviceHeight * 0.014,
   color:"white",
   fontFamily: 'Staatliches-Regular'
 }

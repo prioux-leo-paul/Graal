@@ -69,7 +69,7 @@ function App() {
         <LinearGradient colors={['rgba(74, 45, 68, 0.5)','rgba(67, 67, 67, 0.5)']} style={styles.backgroundUnit}>
           <TouchableHighlight style={{height:"100%",width:"100%",justifyContent:"center", alignItems:"center"}} onPress={() => {
         if (Var.lancer == 0) {
-          Var.setNbrTourMax(Math.floor(Math.random() * 50) + Var.state_total.length + 3);
+          Var.setNbrTourMax(Math.floor(Math.random() * 10) + Var.state_total.length + 3);
           Var.setNbrTour(0);
           timer = setInterval(Lancer, 100);
           Var.setLancer(1);     
@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
     fontStyle : 'normal',
     fontWeight : 'normal',
     fontSize : deviceWidth * 0.05333,
-    letterSpacing : 0.18,
+    letterSpacing : deviceWidth * 0.00768,
     fontFamily: 'Staatliches-Regular'
   },
   title :{
@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
     fontWeight : 'normal',
     fontSize: deviceWidth * 0.096,
     color:"white",
-    letterSpacing : 0.18,
+    letterSpacing : deviceWidth * 0.015,
     fontFamily: 'Staatliches-Regular'
   },
   boxRepartie :{
@@ -224,7 +224,7 @@ const styles = StyleSheet.create({
     fontSize : deviceWidth * 0.05333,
     color : '#000000',
     opacity: 0.6,
-    letterSpacing : 0.18,
+    letterSpacing : deviceWidth * 0.004,
     fontFamily: 'Staatliches-Regular'
   },
   spaceSousTitre :{

@@ -56,7 +56,7 @@ export default function App() {
     let joueurActuelle = Var.listeJoueur[Var.joueurCourant];
     Var.supprimerDeListe(joueurActuelle);
     Var.setIndice(getIndiceCat(nomCategortie));
-  
+
     let r = Math.floor(Math.random() * (Var.state[Var.indice].regle.length - 1));
     let regle = Var.state[Var.indice].regle[r];
   
@@ -79,8 +79,12 @@ export default function App() {
     if (Var.joueurCourant === Var.listeJoueur.length)
       Var.setJoueurCourant(0);
   }
+  function donneName(){
+    return Var.state_total[Var.indice].name.toUpperCase();
+  }
 
-  Regle = donneRegle(Var.state_total[Var.indice].name);
+  
+  
 
   return (
     <View style={styles.fond}>
@@ -88,7 +92,7 @@ export default function App() {
       <Image source={IMAGE.fondGoutte} style={styles.imageGoutte}/>
       <Image source={IMAGE.fondGraal} style={styles.imageGraal}/>
       <View style={styles.boxRepartie}>
-        <Text style={styles.title}>{Var.state_total[Var.indice].name.toUpperCase()}</Text>
+        <Text style={styles.title}>{donneName()}</Text>
       </View>
       <View style={styles.backgroundBox} >
           <View style={styles.boxSousTitre}>
@@ -99,7 +103,7 @@ export default function App() {
               <Text style={styles.sousTitre}>{Var.nameRegle[Var.langue].toUpperCase()}</Text>
           </View>
           <View style={styles.boxRegle}>
-          <Text style={styles.textRegle}>{Regle}</Text>
+          <Text style={styles.textRegle}>{Regle = donneRegle(Var.state_total[Var.indice].name)}</Text>
           </View>
       </View>
       <View style={styles.boxRepartie}>
@@ -165,12 +169,13 @@ const styles = StyleSheet.create({
   },
   title :{
       
+       
     fontStyle : 'normal',
     fontWeight : 'normal',
-    fontSize: 36,
+    fontSize: deviceWidth * 0.096,
     color:"white",
-    fontFamily: 'Staatliches-Regular',
-    letterSpacing : 0.18
+    letterSpacing : deviceWidth * 0.015,
+    fontFamily: 'Staatliches-Regular'
   },
   boxRepartie :{
     width: "100%",
@@ -228,7 +233,7 @@ const styles = StyleSheet.create({
     fontSize :deviceWidth * 0.05333,
     color : '#000000',
     opacity: 0.6,
-    letterSpacing : 0.18,
+    letterSpacing : deviceWidth * 0.004,
     fontFamily: 'Staatliches-Regular'
 
 
