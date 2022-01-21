@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, TouchableOpacity  } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity,ScrollView  } from 'react-native';
 import { LinearGradient } from "expo-linear-gradient";
 import { Dimensions } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
@@ -84,7 +84,7 @@ export default function App() {
   }
 
   
-  
+  console.log(Var.nameRegle[Var.langue].toUpperCase())
 
   return (
     <View style={styles.fond}>
@@ -97,14 +97,14 @@ export default function App() {
       <View style={styles.backgroundBox} >
           <View style={styles.boxSousTitre}>
               <View style={styles.spaceSousTitre}></View>
-              <View style={{height:"100%",width:"15%"}}>
-                <Image style={{height:"90%", width:"90%", resizeMode:"contain"}} source={Var.state_total[Var.indice].src}/>
+              <View style={{height:"90%",width:"15%",alignItems:"center",justifyContent:"center"}}>
+                <Image style={{height:"85%", width:"90%", resizeMode:"contain"}} source={Var.state_total[Var.indice].src}/>
               </View>
               <Text style={styles.sousTitre}>{Var.nameRegle[Var.langue].toUpperCase()}</Text>
           </View>
-          <View style={styles.boxRegle}>
-          <Text style={styles.textRegle}>{Regle = donneRegle(Var.state_total[Var.indice].name)}</Text>
-          </View>
+          <ScrollView style={styles.boxRegle} contentInsetAdjustmentBehavior="automatic" contentContainerStyle={styles.containersRegle}>
+          <Text style={styles.textRegle}>{donneRegle(Var.state_total[Var.indice].name)}</Text>
+          </ScrollView>
       </View>
       <View style={styles.boxRepartie}>
         
@@ -121,20 +121,9 @@ export default function App() {
 
 
 
-
-function TailleRegle(){
-  let taille = Regle.length;
-  if(taille <= 100)
-    return 3;
-  else if(taille <= 200)
-    return 2;
-    else if(taille <= 250)
-  return 1;
-  else
-    return 0.1;
-}
-var taille_regle_description = Var.get_adaptive_size(40, 90);
-var deviceWidth = Dimensions.get('window').width;
+var taille_regle_description = Var.get_adaptive_size(30, 90);
+var deviceWidth = Dimensions.get('window').width
+console.log(taille_regle_description)
 const styles = StyleSheet.create({
   fond : {
     backgroundColor : "#DDC4DD",
@@ -234,7 +223,8 @@ const styles = StyleSheet.create({
     color : '#000000',
     opacity: 0.6,
     letterSpacing : deviceWidth * 0.004,
-    fontFamily: 'Staatliches-Regular'
+    fontFamily: 'Staatliches-Regular',
+    marginLeft : "5%"
 
 
   },
@@ -250,16 +240,19 @@ const styles = StyleSheet.create({
   boxRegle : {
     height: "80%",
     width : "95%",
-    justifyContent : "center",
-    alignItems :"center",
   },
   textRegle : {
     overflow:"scroll",
-    fontSize: taille_regle_description * TailleRegle(),
+    fontSize: taille_regle_description,
     textAlign: 'center',
     color: "white" ,
     fontFamily: 'Staatliches-Regular'
-  }
-  
+  },
+  containersRegle : {
+    alignItems:"center",
+    justifyContent:"center",
+    height: "97%",
+    width : "100%"
+  },
  
 });

@@ -63,6 +63,7 @@ import { StatusBar } from 'expo-status-bar';
 
   export default function ChoixMode() {
 
+    
     onShare = async () => {
       try {
         const result = await Share.share({
@@ -82,6 +83,7 @@ import { StatusBar } from 'expo-status-bar';
       } catch (error) {
         alert(error.message);
       }
+    
     };
 
     var taille_selection = Var.get_adaptive_size(25, 75);
